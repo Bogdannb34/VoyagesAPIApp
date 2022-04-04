@@ -1,9 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using VoyagesAPI.Data;
+using VoyagesAPI.Interfaces;
+using VoyagesAPI.Repository;
 
 var myAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<ICountryRepo, CountryRepository>();
 
 // Add services to the container.
 

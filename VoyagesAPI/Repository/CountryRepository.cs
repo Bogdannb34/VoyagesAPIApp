@@ -14,10 +14,11 @@ namespace VoyagesAPI.Repository
             this.dataContext = _dataContext;
         }
 
-         public async void AddCountry(Country country)
+         public async Task<bool> AddCountryAsync(Country country)
         {
             await dataContext.Countries.AddAsync(country);
-            await dataContext.SaveChangesAsync();
+            var created = await dataContext.SaveChangesAsync();
+            return created > 0;
         }
 
        
@@ -26,22 +27,24 @@ namespace VoyagesAPI.Repository
             return await dataContext.Countries.ToListAsync();
         }
 
-        public async Task<Country> GetCountryById(int id)
+        public async Task<Country> GetByIdAsync(int id)
         {
-            var country = await dataContext.Countries.FirstOrDefaultAsync(c => c.CountryId == id);
-            return country;
+            return await dataContext.Countries.SingleOrDefaultAsync(c => c.CountryId == id);
         }
 
-        public async void UpdateCountry(Country country)
+        public async Task<bool> UpdateCountryAsync(Country country)
         {
-            dataContext.Entry(country).State = EntityState.Modified;
-            await dataContext.SaveChangesAsync();
+            dataContext.Countries.Update(country);
+            var updated = await dataContext.SaveChangesAsync();
+            return updated > 0;
         }
 
-        public async void DeleteCountry(int id)
+        public async Task<bool> DeleteCountryAsync(int id)
         {
-            dataContext.Remove(id).State = EntityState.Deleted;
-            await dataContext.SaveChangesAsync();
+            var country = await GetByIdAsync(id);
+            dataContext.Countries.Remove(country);
+            var deleted = await dataContext.SaveChangesAsync();
+            return deleted > 0;
         }
     }
 }

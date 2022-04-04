@@ -4,14 +4,14 @@ namespace VoyagesAPI.Interfaces
 {
     public interface ICountryRepo
     {
-        void AddCountry(Country country);
+        Task<bool> AddCountryAsync(Country country);
 
         Task<IEnumerable<Country>> GetCountriesAsync();
 
-        Task<Country> GetCountryById(int id);
+        Task<Country> GetByIdAsync(int id);
 
-        void UpdateCountry(Country country);
+        Task<bool> UpdateCountryAsync(Country country);
 
-        void DeleteCountry(int id);
+        Task<bool> DeleteCountryAsync(int id);
     }
 }
