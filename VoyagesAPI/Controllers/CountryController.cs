@@ -33,8 +33,8 @@ namespace VoyagesAPI.Controllers
         } 
 
         [HttpGet]
-        [Route("id")]
-        public async Task<IActionResult> GetCountryById(int id)
+        [Route("{id}")]
+        public async Task<IActionResult> GetCountryById([FromRoute] int id)
         {
             var exists = await countryRepo.GetByIdAsync(id);
             return exists == null ? BadRequest("Country not found!") : Ok(exists);
