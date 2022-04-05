@@ -8,6 +8,7 @@ var myAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<ICountryRepo, CountryRepository>();
+builder.Services.AddScoped<IPortRepo, PortRepository>();
 
 // Add services to the container.
 
