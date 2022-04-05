@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<ICountryRepo, CountryRepository>();
 builder.Services.AddScoped<IPortRepo, PortRepository>();
+builder.Services.AddScoped<IShipRepo, ShipRepository>();
 
 // Add services to the container.
 
