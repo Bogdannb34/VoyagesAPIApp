@@ -7,7 +7,7 @@ namespace VoyagesAPI.Entities
         [Key]
         public int CountryId { get; set; }
 
-        [StringLength(60)]
+        [StringLength(100)]
         public string CountryName { get; set; } = string.Empty;
     }
 }

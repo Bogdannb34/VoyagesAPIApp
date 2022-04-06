@@ -15,7 +15,7 @@ namespace VoyagesAPI.Data.Migrations
                 {
                     CountryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CountryName = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false)
+                    CountryName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -28,7 +28,7 @@ namespace VoyagesAPI.Data.Migrations
                 {
                     ShipId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ShipName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ShipName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     ShipSpeedMax = table.Column<float>(type: "real", nullable: false)
                 },
                 constraints: table =>
@@ -44,9 +44,9 @@ namespace VoyagesAPI.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     VoyageShipId = table.Column<int>(type: "int", nullable: false),
                     VoyageDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    VoyageDeparturePort = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    VoyageDeparturePort = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     VoyageStart = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    VoyageArrivalPort = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    VoyageArrivalPort = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     VoyageEnd = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -60,7 +60,7 @@ namespace VoyagesAPI.Data.Migrations
                 {
                     PortId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PortName = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    PortName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CountryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

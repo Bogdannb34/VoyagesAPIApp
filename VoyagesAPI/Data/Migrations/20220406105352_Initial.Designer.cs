@@ -12,7 +12,7 @@ using VoyagesAPI.Data;
 namespace VoyagesAPI.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220404192807_Initial")]
+    [Migration("20220406105352_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,8 +34,8 @@ namespace VoyagesAPI.Data.Migrations
 
                     b.Property<string>("CountryName")
                         .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("CountryId");
 
@@ -55,8 +55,8 @@ namespace VoyagesAPI.Data.Migrations
 
                     b.Property<string>("PortName")
                         .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("PortId");
 
@@ -75,8 +75,8 @@ namespace VoyagesAPI.Data.Migrations
 
                     b.Property<string>("ShipName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<float>("ShipSpeedMax")
                         .HasColumnType("real");
@@ -96,16 +96,16 @@ namespace VoyagesAPI.Data.Migrations
 
                     b.Property<string>("VoyageArrivalPort")
                         .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime>("VoyageDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("VoyageDeparturePort")
                         .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime>("VoyageEnd")
                         .HasColumnType("datetime2");

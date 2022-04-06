@@ -7,7 +7,7 @@ namespace VoyagesAPI.Entities
         [Key]
         public int ShipId { get; set; }
 
-        [StringLength(50)]
+        [StringLength(100)]
         public string ShipName { get; set; } = string.Empty;
 
         public float ShipSpeedMax { get; set; }

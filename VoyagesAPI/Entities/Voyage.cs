@@ -11,12 +11,12 @@ namespace VoyagesAPI.Entities
 
         public DateTime VoyageDate { get; set; }
 
-        [StringLength(60)]
+        [StringLength(100)]
         public string VoyageDeparturePort { get; set; } = string.Empty;
 
         public DateTime VoyageStart { get; set; }
 
-        [StringLength(60)]
+        [StringLength(100)]
         public string VoyageArrivalPort { get; set; } = string.Empty;
 
         public DateTime VoyageEnd { get; set; }
