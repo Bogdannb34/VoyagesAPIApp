@@ -1,0 +1,128 @@
+create table dbo.Country (
+country_id int identity(1,1),
+country_name varchar(100),
+primary key (country_id)
+);
+
+insert into dbo.Country
+values ('Romania'),
+	('Turkey'),
+	('Georgia'),
+	('Greece'),
+	('Italy'),
+	('France'),
+	('Spain'),
+	('Netherlands');
+
+select * from dbo.Country;
+
+create table dbo.Port (
+port_id int identity(1,1),
+port_name varchar(100),
+country_id int,
+primary key (port_id),
+constraint port_country_id
+foreign key (country_id)
+references dbo.Country (country_id)
+);
+
+insert into dbo.Port
+values ('Mangalia', 1),
+		('Constanta', 1),
+		('Galati', 1),
+		('Navodari', 1),
+		('Izmir', 2),
+		('Mersin', 2),
+		('Haydarpasa', 2),
+		('Kusadas', 2),
+		('Amasra', 2),
+		('Batumi', 3),
+		('Poti', 3),
+		('Pireu', 4),
+		('Salonic', 4),
+		('Killini', 4),
+		('Rafina', 4),
+		('Augusta', 5),
+		('Napoli', 5),
+		('Savona', 5),
+		('Ravenna', 5),
+		('Marsilia', 6),
+		('Le Havre', 6),
+		('Nantes', 6),
+		('Barcelona', 7),
+		('Valencia', 7),
+		('Cartagena', 7),
+		('Taragona', 7),
+		('Cadiz', 7),
+		('Rotterdam', 8),
+		('Amsterdam', 8),
+		('Ijmuiden', 8);
+
+select * from dbo.Port;
+
+create table dbo.Ship (
+ship_id int identity(1,1),
+ship_name varchar(100),
+ship_speed_max float,
+primary key (ship_id)
+);
+
+insert into dbo.Ship
+values  ('PRIDE KENJI', 14.5),
+		('PRIDE SUCCESS', 14.5),
+		('RIO GRANDE', 15.5),
+		('RIO ARAUCA', 15.5),
+		('RIO CARONI', 15.0),
+		('RIO ORINOCO', 15.0),
+		('RIO APURE', 15.5),
+		('Blue Rose', 13.5),
+		('KOTA DRAGON', 13.0);
+
+select * from dbo.Ship;
+
+create table dbo.Voyage (
+voyage_id int identity(1,1),
+ship_id int,
+voyage_date date,
+voyage_departure_port varchar(100),
+voyage_start datetime,
+voyage_arrival_port varchar(100),
+voyage_end datetime,
+primary key (voyage_id),
+constraint voyage_ship_id
+foreign key (ship_id)
+references dbo.Ship (ship_id)
+);
+
+insert into dbo.Voyage
+values (3, '2022-01-21 13:46', 'Augusta', '2022-01-21 14:00', 'Pireu', '2022-01-22 10:16'),
+	(1, '2022-02-10 07:26', 'Izmir', '2022-02-10 07:48', 'Savona', '2022-02-12 12:18');
+
+select * from dbo.Voyage;
+
+// queries
+3.
+create view [Country Ports] as
+select * from dbo.Ports p
+where p.CountryId = 1;
+
+select * from [dbo].[Country Ports]
+order by PortName asc;
+
+
+4.
+select CountryName, count(PortId) as Ports from dbo.Countries c
+full outer join dbo.Ports p 
+on c.CountryId = p.CountryId
+where PortId in (select PortId from dbo.Ports
+group by PortId having count(PortId)>=1)
+group by CountryName;
+
+
+6.
+select CountryName, PortName from dbo.Countries c
+full outer join dbo.Ports p 
+on c.CountryId = p.CountryId
+where PortId in (select PortId from dbo.Ports
+group by PortId having count(PortId)>=1)
+group by CountryName, PortName;
